@@ -14,7 +14,7 @@ This project demonstrates custom Navigator and Route observers and how to use Ro
 - `lib/presentation/views/home_screen.dart`: Example screen using RouteAware, named routes, and an internal `_log` method for class-level logging.
 
 ## Setup
-Ensure Flutter is installed and dependencies are ready. This project uses only Flutter SDK 3.35.1.
+Ensure Flutter is installed and dependencies are ready. This project uses Flutter SDK 3.35.1.
 
 ```sh
 flutter pub get
