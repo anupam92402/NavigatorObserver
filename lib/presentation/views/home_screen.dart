@@ -6,6 +6,7 @@ import 'package:navigation/presentation/views/tab_bar_screen.dart';
 
 import 'bottom_nav_bar_screen.dart';
 import 'bottom_sheet_screen.dart';
+import 'multiple_route_aware_impl_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Text('Home Screen', style: TextStyle(fontSize: 32))),
-          SizedBox(height: 8),
+          SizedBox(height: 32),
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(
@@ -133,6 +134,17 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
               );
             },
             child: Text('Open Tab View Bar Screen'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  settings: const RouteSettings(name: 'MultipleRouteAwareImplScreen'),
+                  builder: (context) => MultipleRouteAwareImplScreen(),
+                ),
+              );
+            },
+            child: Text('Navigate to Multiple Route Aware UseCase'),
           ),
         ],
       ),

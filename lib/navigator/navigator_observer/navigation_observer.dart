@@ -67,7 +67,7 @@ class CustomNavigatorObserver extends NavigatorObserver {
   /// Common logger to centralize printing and respect enableLogger.
   void _log(String message) {
     if (enableLogger) {
-      print('[Navigator] $message');
+      print('[NavigatorObserver] $message');
     }
   }
 
