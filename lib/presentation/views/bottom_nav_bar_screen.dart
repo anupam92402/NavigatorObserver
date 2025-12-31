@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../navigator/route_observer/route_observer.dart';
 import '../../navigator/route_observer/route_observer_util.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
@@ -68,17 +69,17 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
 
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [HomeTab(), SearchTab(), ProfileTab()];
+  final List<Widget> _screens = const [HomeNavigator(), SearchNavigator()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: IndexedStack(index: _currentIndex, children: _screens),
-
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
         onDestinationSelected: (index) {
+          print("BottomNav Tab Switch Event→ Switched to tab index: $index");
           setState(() => _currentIndex = index);
         },
         destinations: const [
@@ -92,11 +93,6 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
             selectedIcon: Icon(Icons.search),
             label: 'Search',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.person_outlined),
-            selectedIcon: Icon(Icons.person),
-            label: 'Profile',
-          ),
         ],
       ),
     );
@@ -106,6 +102,23 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
 //
 // ---------------- TABS ----------------
 //
+
+class HomeNavigator extends StatelessWidget {
+  const HomeNavigator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      observers: [CustomRouteObserver()],
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          settings: const RouteSettings(name: 'HomeRoot'),
+          builder: (_) => const HomeTab(),
+        );
+      },
+    );
+  }
+}
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -118,6 +131,23 @@ class HomeTab extends StatelessWidget {
   }
 }
 
+class SearchNavigator extends StatelessWidget {
+  const SearchNavigator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      observers: [CustomRouteObserver()],
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          settings: const RouteSettings(name: 'SearchRoot'),
+          builder: (_) => const SearchTab(),
+        );
+      },
+    );
+  }
+}
+
 class SearchTab extends StatelessWidget {
   const SearchTab({super.key});
 
@@ -125,17 +155,6 @@ class SearchTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text("Search Screen", style: TextStyle(fontSize: 24)),
-    );
-  }
-}
-
-class ProfileTab extends StatelessWidget {
-  const ProfileTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Profile Screen", style: TextStyle(fontSize: 24)),
     );
   }
 }

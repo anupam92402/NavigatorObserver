@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 
 /// Custom RouteObserver that mirrors the behavior of CustomNavigatorObserver
 /// and tracks a stack of PageRoute<dynamic> while logging in green.
-class CustomRouteObserver extends RouteObserver<PageRoute<dynamic>> {
+class CustomRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   /// List to maintain the stack of page routes.
-  static final List<PageRoute<dynamic>> _stack = [];
+  final List<PageRoute<dynamic>> _stack = [];
 
   /// Flag to enable or disable logging.
   final bool enableLogger;
@@ -17,7 +17,9 @@ class CustomRouteObserver extends RouteObserver<PageRoute<dynamic>> {
     if (pageRoute != null) {
       _stack.add(pageRoute);
     }
-    _log('didPush: ${_routeName(route)} from ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}');
+    _log(
+      'didPush: ${_routeName(route)} from ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}',
+    );
     super.didPush(route, previousRoute);
   }
 
@@ -27,7 +29,9 @@ class CustomRouteObserver extends RouteObserver<PageRoute<dynamic>> {
     if (pageRoute != null) {
       _stack.remove(pageRoute);
     }
-    _log('didPop: ${_routeName(route)} to ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}');
+    _log(
+      'didPop: ${_routeName(route)} to ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}',
+    );
     super.didPop(route, previousRoute);
   }
 
@@ -37,7 +41,9 @@ class CustomRouteObserver extends RouteObserver<PageRoute<dynamic>> {
     if (pageRoute != null) {
       _stack.remove(pageRoute);
     }
-    _log('didRemove: ${_routeName(route)}; previous ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}');
+    _log(
+      'didRemove: ${_routeName(route)}; previous ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}',
+    );
     super.didRemove(route, previousRoute);
   }
 
@@ -54,7 +60,9 @@ class CustomRouteObserver extends RouteObserver<PageRoute<dynamic>> {
         _stack.add(newPage);
       }
     }
-    _log('didReplace: ${_routeName(oldRoute)} -> ${_routeName(newRoute)} | stack=${_stack.map(_routeName).toList()}');
+    _log(
+      'didReplace: ${_routeName(oldRoute)} -> ${_routeName(newRoute)} | stack=${_stack.map(_routeName).toList()}',
+    );
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
   }
 
@@ -68,7 +76,8 @@ class CustomRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   String _routeName(Route<dynamic>? route) {
     if (route == null) return 'null';
     final name = route.settings.name;
-    return (name != null && name.isNotEmpty) ? name : route.runtimeType.toString();
+    return (name != null && name.isNotEmpty)
+        ? name
+        : route.runtimeType.toString();
   }
 }
-

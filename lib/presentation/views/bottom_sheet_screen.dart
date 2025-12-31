@@ -64,10 +64,12 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> with RouteAware {
   void didPushNext() {
     _log('didPushNext (navigated away from this screen)');
   }
+
   void _openFirstBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      routeSettings: const RouteSettings(name: 'FirstBottomSheet'),
       builder: (_) => const FirstBottomSheet(),
     );
   }

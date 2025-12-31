@@ -72,10 +72,9 @@ class _TabBarScreenState extends State<TabBarScreen>
   final List<Widget> _tabs = const [
     Tab(text: "Home", icon: Icon(Icons.home)),
     Tab(text: "Search", icon: Icon(Icons.search)),
-    Tab(text: "Profile", icon: Icon(Icons.person)),
   ];
 
-  final List<Widget> _views = const [HomeTab(), SearchTab(), ProfileTab()];
+  final List<Widget> _views = const [HomeTab(), SearchTab()];
 
   @override
   void initState() {
@@ -122,17 +121,6 @@ class SearchTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text("Search Tab", style: TextStyle(fontSize: 24)),
-    );
-  }
-}
-
-class ProfileTab extends StatelessWidget {
-  const ProfileTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Profile Tab", style: TextStyle(fontSize: 24)),
     );
   }
 }
