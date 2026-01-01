@@ -95,5 +95,9 @@ class HomeScreenState extends State<HomeScreen> with RouteAware {
 - If logs show `MaterialPageRoute<dynamic>` instead of screen names, ensure you set `RouteSettings(name: ...)` or use named routes.
 - If RouteAware callbacks don’t fire, confirm the route observer instance is registered in `MaterialApp`.
 
+## Tutorial
+For a step-by-step walkthrough of this project and concepts, see:
+- Flutter Navigation Observers Made Simple: https://medium.com/@anupamg2001/flutter-navigation-observers-made-simple-7cfe7d44e405
+
 ## License
 This repository is for demonstration purposes. Adapt as needed for your projects.
