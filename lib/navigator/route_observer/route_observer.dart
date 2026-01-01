@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 
 /// Custom RouteObserver that mirrors the behavior of CustomNavigatorObserver
-/// and tracks a stack of PageRoute<dynamic> while logging in green.
+/// and tracks a stack of ModalRoute<dynamic> while logging in green.
 class CustomRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
   /// List to maintain the stack of page routes.
-  final List<PageRoute<dynamic>> _stack = [];
+  final List<ModalRoute<dynamic>> _stack = [];
 
   /// Flag to enable or disable logging.
   final bool enableLogger;
@@ -13,9 +13,9 @@ class CustomRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    final pageRoute = route is PageRoute<dynamic> ? route : null;
-    if (pageRoute != null) {
-      _stack.add(pageRoute);
+    final modalRoute = route is ModalRoute<dynamic> ? route : null;
+    if (modalRoute != null) {
+      _stack.add(modalRoute);
     }
     _log(
       'didPush: ${_routeName(route)} from ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}',
@@ -25,9 +25,9 @@ class CustomRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    final pageRoute = route is PageRoute<dynamic> ? route : null;
-    if (pageRoute != null) {
-      _stack.remove(pageRoute);
+    final modalRoute = route is ModalRoute<dynamic> ? route : null;
+    if (modalRoute != null) {
+      _stack.remove(modalRoute);
     }
     _log(
       'didPop: ${_routeName(route)} to ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}',
@@ -37,9 +37,9 @@ class CustomRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
 
   @override
   void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    final pageRoute = route is PageRoute<dynamic> ? route : null;
-    if (pageRoute != null) {
-      _stack.remove(pageRoute);
+    final modalRoute = route is ModalRoute<dynamic> ? route : null;
+    if (modalRoute != null) {
+      _stack.remove(modalRoute);
     }
     _log(
       'didRemove: ${_routeName(route)}; previous ${_routeName(previousRoute)} | stack=${_stack.map(_routeName).toList()}',
@@ -49,8 +49,8 @@ class CustomRouteObserver extends RouteObserver<ModalRoute<dynamic>> {
 
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    final newPage = newRoute is PageRoute<dynamic> ? newRoute : null;
-    final oldPage = oldRoute is PageRoute<dynamic> ? oldRoute : null;
+    final newPage = newRoute is ModalRoute<dynamic> ? newRoute : null;
+    final oldPage = oldRoute is ModalRoute<dynamic> ? oldRoute : null;
 
     if (newPage != null) {
       final idx = oldPage == null ? -1 : _stack.indexOf(oldPage);

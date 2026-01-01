@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:navigation/navigator/route_observer/route_observer_util.dart';
 import 'package:navigation/presentation/views/profile_screen.dart';
 import 'package:navigation/presentation/views/settings_screen.dart';
-import 'package:navigation/presentation/views/tab_bar_screen.dart';
 
 import 'bottom_nav_bar_screen.dart';
 import 'bottom_sheet_screen.dart';
@@ -128,18 +127,9 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  settings: const RouteSettings(name: 'TabBarScreen'),
-                  builder: (context) => TabBarScreen(),
-                ),
-              );
-            },
-            child: Text('Open Tab View Bar Screen'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  settings: const RouteSettings(name: 'MultipleRouteAwareImplScreen'),
+                  settings: const RouteSettings(
+                    name: 'MultipleRouteAwareImplScreen',
+                  ),
                   builder: (context) => MultipleRouteAwareImplScreen(),
                 ),
               );
