@@ -12,7 +12,7 @@ class BottomNavBarScreen extends StatefulWidget {
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen>
     with RouteAware {
-  RouteObserver<PageRoute<dynamic>>? _routeObserver;
+  RouteObserver<ModalRoute<dynamic>>? _routeObserver;
 
   /// Centralized plain logger for this class.
   void _log(String message) {
@@ -25,7 +25,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen>
 
     /// Subscribe this screen to the shared RouteObserver.
     final observer = RouteObserverUtils().getObserver(ObserverType.route);
-    if (observer is RouteObserver<PageRoute<dynamic>>) {
+    if (observer is RouteObserver<ModalRoute<dynamic>>) {
       _routeObserver = observer;
       final route = ModalRoute.of(context);
       if (route is PageRoute<dynamic>) {
