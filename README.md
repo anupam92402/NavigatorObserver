@@ -98,6 +98,7 @@ class HomeScreenState extends State<HomeScreen> with RouteAware {
 ## Tutorial
 For a step-by-step walkthrough of this project and concepts, see:
 - Flutter Navigation Observers Made Simple: https://medium.com/@anupamg2001/flutter-navigation-observers-made-simple-7cfe7d44e405
+- Flutter Navigation Observers: Common Pitfalls and Best Practices: https://medium.com/@anupamg2001/flutter-navigation-observers-common-pitfalls-and-best-practices-4a8841b6608d
 
 ## License
 This repository is for demonstration purposes. Adapt as needed for your projects.
